@@ -20,7 +20,7 @@ def anneal():
 def main():
     start_temp: float = 100.
     min_temp: float = 1.
-    crewmates
+    crewmates = [Crewmate('')]
     proposed_solution = []
 
 

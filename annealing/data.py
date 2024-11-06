@@ -23,6 +23,7 @@ class Task:
     relevance: float  # the need to complete the task at the moment (0, 1]
     task_type: TaskType
     task_areas: dict[Area, float]  # affected areas of the task
+    estimated_time: float  # time for the task in the ideal case (hours)
 
     def __init__(self, name: str, relevance: float, task_type: TaskType, task_areas: dict[Area, float]):
         if not 0 < relevance <= 1:
@@ -57,5 +58,17 @@ class Crewmate:
         self.skills = skills
 
 
-def E(task_queue: list[Task], task) -> float:
-    pass
+def E(task_queue: dict[Task, Crewmate | set[Crewmate]], crewmates: set[Crewmate]) -> float:
+    time_multiplier = 1.
+    time = [.0 for _ in range(len(crewmates))]
+    is_busy = [.0 for _ in range(len(crewmates))]
+    for (task, developer) in task_queue.items():
+        if isinstance(developer, Crewmate):
+            developer = set(developer)
+        max_relevance = max(task_queue.keys(), key=lambda x: x.relevance)
+        current_relevance = task.relevance
+        if current_relevance < max_relevance:
+            time
+        del task_queue[Task]
+
+    return time
